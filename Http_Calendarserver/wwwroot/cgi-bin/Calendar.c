@@ -238,12 +238,12 @@ int main()
 		printf("<html>您已经退出系统</html>");
 		
 	}
-	    use.year  = a;
+	                use.year  = a;
 			use.month = b;
-			if (use.month == 13)
+			if (use.month > 12)
 			{
-				use.month = 1;
-				use.year += 1;
+			  printf("<head><meta http-equiv=\"content-Type\" content=\"text/html;charset=utf-8\"></head>""<h1>月份错误，请输入1-12月</h1>");
+                          return 0;
 			}
 			printf("<head><meta http-equiv=\"content-Type\" content=\"text/html;charset=utf-8\"></head>""<html>&emsp;&emsp;&emsp;&emsp;&emsp;%d 年 %d 月 <br></html>", use.year, use.month); 
 			print_calendar(use);
