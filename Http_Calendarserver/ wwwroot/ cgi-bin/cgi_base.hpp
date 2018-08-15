@@ -5,27 +5,25 @@
 #include<unistd.h>
 
 
-    //��GET��POST���������ȡ����Ĳ���
-    //1.GET��query_string�ж�ȡ
-    //1.POST��body�ж�ȡ
-    // ��ȡ�Ľ���ͷ��뻺����buf��
+    //分GET和POST两种情况读取计算的参数
+    //1.GET从query_string中读取
+    //1.POST从body中读取
+    // 读取的结果就放入缓冲区buf中
 
   int GetQueryString(char buf[]){
-    //1.�ӻ��������ж�ȡ�ķ�����ʲô
-
+    //1.从环境变量中读取的方法是什么
   char* method=getenv("REQUEST_METHOD");
   if(NULL == method){
-    //��ǰ��CGI�����Ӧ�ı�׼����ѱ��ض��򵽹ܵ�֮��
-    //���ⲿ�����ݻᱻ���ص��ͻ���
-    //�����ó����ڲ��Ĵ���¶����ͨ�û�
-    //����ͨ��stderr��Ϊ������־���ֶ�
+    //当前的CGI程序对应的标准输出已被重定向到管道之中
+    //且这部分数据会被返回到客户端
+    //避免让程序内部的错误暴露给普通用户
+    //可以通过stderr作为输入日志的手段
     fprintf(stderr,"method==NULL\n");
     return 0;
   }
-
-  //2.�ж������� GET������POST
-  //�����GET���ʹӻ����������ȡQUERY_STRING
-  //�����POST������Ҫ�ӻ����������ȡCONTENT_LENGC
+  //2.判定方法是 GET，还是POST
+  //如果是GET，就从环境变量里读取QUERY_STRING
+  //如果是POST，就需要从环境变量里读取CONTENT_LENGC
   
   if(strcasecmp(method,"GET")==0){
     char* query_string=getenv("QUERY_STRING");
@@ -33,7 +31,7 @@
       fprintf(stderr,"query_string == NULL\n");
       return 0;
     }
-  //������ɺ�buf������������磺a=10&b=20
+  //拷贝完成后，buf里面的内容形如：a=10&b=20
     fprintf(stderr,"[CGI-GET]query_string:%s\n",query_string);
     strcpy(buf,query_string);
   }
@@ -46,7 +44,6 @@
     }
     int content_length = atoi(content_length_str);
     int i=0;
-    
     fprintf(stderr,"[CGI-POST]body");
     for(;i<content_length;++i){
       fprintf(stderr,"%c",buf[i]);
