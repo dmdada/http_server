@@ -80,8 +80,6 @@ void print_calendar(today today_usenow)
 	}
 	else
 	{
-
-
 		daysbefore = getmonthdays(today_usenow.year, today_usenow.month - 1);
 	}
 	int daysbefoeit = daysbefore - day + 1;
