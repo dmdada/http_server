@@ -371,7 +371,6 @@ void HeadlerRequest(int64_t new_sock){
       goto END;
   }
 
-   
 END:
   if(200 != err_code){
     Err_404(new_sock);
