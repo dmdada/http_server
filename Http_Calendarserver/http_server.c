@@ -16,7 +16,7 @@ void HandlerFilePath(const char* url_path,char file_path[]){
   //url_path  -->  /index.html 
   //file_path  -->./wwwroot/index.html
   sprintf(file_path,"./wwwroot%s",url_path);
-  //如果输入的网址后面什么都没有写，那么默认追加index.html,静态生成页面
+  //如果输入的网址后面什么都没有写，那么默认追加index.html静态页面
   if(file_path[strlen(file_path)-1] == '/'){
     strcat(file_path,"index.html");
   }
