@@ -3,8 +3,7 @@
 #include <stdlib.h>  
 #include <time.h> 
 typedef struct today
-{
-	int day;
+{       int day;
 	int month;
 	int year;
 } today;
