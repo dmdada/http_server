@@ -4,7 +4,6 @@
 #include<string.h>
 #include<unistd.h>
 
-
     //分GET和POST两种情况读取计算的参数
     //1.GET从query_string中读取
     //1.POST从body中读取
