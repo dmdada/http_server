@@ -245,6 +245,6 @@ int main()
 			}
 			printf("<head><meta http-equiv=\"content-Type\" content=\"text/html;charset=utf-8\"></head>""<html>&emsp;&emsp;&emsp;&emsp;&emsp;%d 年 %d 月 <br></html>", use.year, use.month); 
 			print_calendar(use);
-			printf("<html>------------------------------------------<br></html>");
+			printf("<html><br>------------------------------------------<br></html>");
 	return 0;
 }
