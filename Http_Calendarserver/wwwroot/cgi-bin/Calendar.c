@@ -237,7 +237,7 @@ int main()
 	}
 	                use.year  = a;
 			use.month = b;
-			if (use.month > 12)
+			if (use.month > 12||use.month<=0)
 			{
 			  printf("<head><meta http-equiv=\"content-Type\" content=\"text/html;charset=utf-8\"></head>""<h1>月份错误，请输入1-12月</h1>");
                           return 0;
